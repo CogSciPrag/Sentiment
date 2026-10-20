@@ -1,0 +1,254 @@
+corpus	item	query	hits_in_corpus	sample_size	context	download_file
+enTenTen21	other verbs (baseline)	"[tag=""VV.*""]"	6096938102	10000	truncated to 100 characters each side	se_baseline_other_verbs.txt
+BNC	other verbs (baseline)	"[tag=""VV.*""]"	11435093	10000	truncated to 100 characters each side	se_baseline_other_verbs.txt
+enTenTen21	make	"[lemma=""make"" & tag=""V.*""]"	118240907	10000	truncated to 100 characters each side	se_batch_001.txt
+enTenTen21	get	"[lemma=""get"" & tag=""V.*""]"	100628738	10000	truncated to 100 characters each side	se_batch_20260930125839.txt
+BNC	cause	"[lemma=""cause"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930131237.txt
+BNC	make	"[lemma=""make"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930131237.txt
+enTenTen21	compel	"[lemma=""compel"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930131237.txt
+enTenTen21	force	"[lemma=""force"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930131237.txt
+enTenTen21	let	"[lemma=""let"" & tag=""V.*""]"	18804819	10000	truncated to 100 characters each side	se_batch_20260930131237.txt
+BNC	compel	"[lemma=""compel"" & tag=""V.*""]"	1112	1112	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	ensure	"[lemma=""ensure"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	force	"[lemma=""force"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	generate	"[lemma=""generate"" & tag=""V.*""]"	5682	5682	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	get	"[lemma=""get"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	guarantee	"[lemma=""guarantee"" & tag=""V.*""]"	3723	3723	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	induce	"[lemma=""induce"" & tag=""V.*""]"	2416	2416	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	let	"[lemma=""let"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	produce	"[lemma=""produce"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	prompt	"[lemma=""prompt"" & tag=""V.*""]"	2268	2268	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	provoke	"[lemma=""provoke"" & tag=""V.*""]"	1984	1984	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	render	"[lemma=""render"" & tag=""V.*""]"	2051	2051	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	secure	"[lemma=""secure"" & tag=""V.*""]"	5382	5382	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	spark	"[lemma=""spark"" & tag=""V.*""]"	732	732	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	trigger	"[lemma=""trigger"" & tag=""V.*""]"	1248	1248	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	create	"[lemma=""create"" & tag=""V.*""]"	29154937	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	enable	"[lemma=""enable"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	ensure	"[lemma=""ensure"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	generate	"[lemma=""generate"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	guarantee	"[lemma=""guarantee"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	induce	"[lemma=""induce"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	produce	"[lemma=""produce"" & tag=""V.*""]"	12696340	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	prompt	"[lemma=""prompt"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	provoke	"[lemma=""provoke"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	render	"[lemma=""render"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	secure	"[lemma=""secure"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	spark	"[lemma=""spark"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+enTenTen21	trigger	"[lemma=""trigger"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930132233.txt
+BNC	affect	"[lemma=""affect"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	allow	"[lemma=""allow"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	block	"[lemma=""block"" & tag=""V.*""]"	2980	2980	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	convince	"[lemma=""convince"" & tag=""V.*""]"	4246	4246	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	create	"[lemma=""create"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	discourage	"[lemma=""discourage"" & tag=""V.*""]"	1117	1117	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	enable	"[lemma=""enable"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	encourage	"[lemma=""encourage"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	facilitate	"[lemma=""facilitate"" & tag=""V.*""]"	1771	1771	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	foster	"[lemma=""foster"" & tag=""V.*""]"	1237	1237	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	help	"[lemma=""help"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	hinder	"[lemma=""hinder"" & tag=""V.*""]"	595	595	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	influence	"[lemma=""influence"" & tag=""V.*""]"	5563	5563	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	inhibit	"[lemma=""inhibit"" & tag=""V.*""]"	1388	1388	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	inspire	"[lemma=""inspire"" & tag=""V.*""]"	2329	2329	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	intend	"[lemma=""intend"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	motivate	"[lemma=""motivate"" & tag=""V.*""]"	1407	1407	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	necessitate	"[lemma=""necessitate"" & tag=""V.*""]"	704	704	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	oblige	"[lemma=""oblige"" & tag=""V.*""]"	2420	2420	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	permit	"[lemma=""permit"" & tag=""V.*""]"	4800	4800	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	persuade	"[lemma=""persuade"" & tag=""V.*""]"	5016	5016	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	prevent	"[lemma=""prevent"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	promote	"[lemma=""promote"" & tag=""V.*""]"	6583	6583	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	require	"[lemma=""require"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	stimulate	"[lemma=""stimulate"" & tag=""V.*""]"	2479	2479	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	stop	"[lemma=""stop"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	tempt	"[lemma=""tempt"" & tag=""V.*""]"	1542	1542	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	affect	"[lemma=""affect"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	allow	"[lemma=""allow"" & tag=""V.*""]"	23484318	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	assist	"[lemma=""assist"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	block	"[lemma=""block"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	convince	"[lemma=""convince"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	discourage	"[lemma=""discourage"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	encourage	"[lemma=""encourage"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	facilitate	"[lemma=""facilitate"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	foster	"[lemma=""foster"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	help	"[lemma=""help"" & tag=""V.*""]"	37764356	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	hinder	"[lemma=""hinder"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	influence	"[lemma=""influence"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	inhibit	"[lemma=""inhibit"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	inspire	"[lemma=""inspire"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	intend	"[lemma=""intend"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	motivate	"[lemma=""motivate"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	necessitate	"[lemma=""necessitate"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	oblige	"[lemma=""oblige"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	permit	"[lemma=""permit"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	persuade	"[lemma=""persuade"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	prevent	"[lemma=""prevent"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	promote	"[lemma=""promote"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	require	"[lemma=""require"" & tag=""V.*""]"	20746975	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	save	"[lemma=""save"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	stimulate	"[lemma=""stimulate"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	stop	"[lemma=""stop"" & tag=""V.*""]"	11054360	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+enTenTen21	tempt	"[lemma=""tempt"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930141318.txt
+BNC	account for	"[lemma=""account"" & tag=""V.*""] [lc=""for""]"	3344	3344	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	arise from	"[lemma=""arise"" & tag=""V.*""] [lc=""from""]"	2421	2421	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	assist	"[lemma=""assist"" & tag=""V.*""]"	4268	4268	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	blame	"[lemma=""blame"" & tag=""V.*""]"	4206	4206	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	bring about	"[lemma=""bring"" & tag=""V.*""] [lc=""about""]"	2028	2028	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	contribute to	"[lemma=""contribute"" & tag=""V.*""] [lc=""to""]"	3604	3604	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	credit	"[lemma=""credit"" & tag=""V.*""]"	697	697	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	demand	"[lemma=""demand"" & tag=""V.*""]"	7428	7428	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	depend on	"[lemma=""depend"" & tag=""V.*""] [lc=""on|upon""]"	9485	9485	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	deter	"[lemma=""deter"" & tag=""V.*""]"	889	889	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	give rise to	"[lemma=""give"" & tag=""V.*""] [lc=""rise""] [lc=""to""]"	1853	1853	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	lead to	"[lemma=""lead"" & tag=""V.*""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	make sure	"[lemma=""make"" & tag=""V.*""] [lc=""sure""]"	5541	5541	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	protect	"[lemma=""protect"" & tag=""V.*""]"	8850	8850	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	restrain	"[lemma=""restrain"" & tag=""V.*""]"	892	892	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	result from	"[lemma=""result"" & tag=""V.*""] [lc=""from""]"	1798	1798	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	result in	"[lemma=""result"" & tag=""V.*""] [lc=""in""]"	5479	5479	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	save	"[lemma=""save"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	stem from	"[lemma=""stem"" & tag=""V.*""] [lc=""from""]"	907	907	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	yield	"[lemma=""yield"" & tag=""V.*""]"	1954	1954	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	account for	"[lemma=""account"" & tag=""V.*""] [lc=""for""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	arise from	"[lemma=""arise"" & tag=""V.*""] [lc=""from""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	because of	"[lc=""because""] [lc=""of""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	blame	"[lemma=""blame"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	bring about	"[lemma=""bring"" & tag=""V.*""] [lc=""about""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	contribute to	"[lemma=""contribute"" & tag=""V.*""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	credit	"[lemma=""credit"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	demand	"[lemma=""demand"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	depend on	"[lemma=""depend"" & tag=""V.*""] [lc=""on|upon""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	deter	"[lemma=""deter"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	due to	"[lc=""due""] [lc=""to""]"	11794842	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	give rise to	"[lemma=""give"" & tag=""V.*""] [lc=""rise""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	lead to	"[lemma=""lead"" & tag=""V.*""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	make sure	"[lemma=""make"" & tag=""V.*""] [lc=""sure""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	owing to	"[lc=""owing""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	protect	"[lemma=""protect"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	restrain	"[lemma=""restrain"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	result from	"[lemma=""result"" & tag=""V.*""] [lc=""from""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	result in	"[lemma=""result"" & tag=""V.*""] [lc=""in""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	stem from	"[lemma=""stem"" & tag=""V.*""] [lc=""from""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	thanks to	"[lc=""thanks""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+enTenTen21	yield	"[lemma=""yield"" & tag=""V.*""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930144108.txt
+BNC	as a result of	"[lc=""as""] [lc=""a""] [lc=""result""] [lc=""of""]"	5156	5156	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	because (clause)	"[lc=""because""] [lc!=""of""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	because of	"[lc=""because""] [lc=""of""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	due to	"[lc=""due""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	enough for	"[lc=""enough""] [tag=""N.*""]{0,2} [lc=""for""]"	2614	2614	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	fail to	"[lemma=""fail"" & tag=""V.*""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	make a difference to	"[lemma=""make"" & tag=""V.*""] [lc=""a""] [tag=""J.*""]? [lc=""difference""] [lc=""to""]"	166	166	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	manage to	"[lemma=""manage"" & tag=""V.*""] [lc=""to""]"	6220	6220	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	necessary for	"[lc=""necessary""] [lc=""for""]"	1660	1660	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	owing to	"[lc=""owing""] [lc=""to""]"	811	811	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	required for	"[lc=""required""] [lc=""for""]"	1312	1312	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	succeed in	"[lemma=""succeed"" & tag=""V.*""] [lc=""in""]"	1849	1849	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	sufficient for	"[lc=""sufficient""] [lc=""for""]"	309	309	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	thanks to	"[lc=""thanks""] [lc=""to""]"	2182	2182	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	as a result of	"[lc=""as""] [lc=""a""] [lc=""result""] [lc=""of""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	because (clause)	"[lc=""because""] [lc!=""of""]"	39851117	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	enough for	"[lc=""enough""] [tag=""N.*""]{0,2} [lc=""for""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	fail to	"[lemma=""fail"" & tag=""V.*""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	make a difference to	"[lemma=""make"" & tag=""V.*""] [lc=""a""] [tag=""J.*""]? [lc=""difference""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	manage to	"[lemma=""manage"" & tag=""V.*""] [lc=""to""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	necessary for	"[lc=""necessary""] [lc=""for""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	required for	"[lc=""required""] [lc=""for""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	succeed in	"[lemma=""succeed"" & tag=""V.*""] [lc=""in""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+enTenTen21	sufficient for	"[lc=""sufficient""] [lc=""for""]"	10000	10000	truncated to 100 characters each side	se_batch_20260930145809.txt
+BNC	associated with	"[lc=""associate|associates|associated|associating""] []{0,3} [lc=""with""]"	7693	7693	40 tokens each side, sentence-bounded	se_batch_assoc_bnc.txt
+BNC	correlated with	"[lc=""correlate|correlates|correlated|correlating""] []{0,3} [lc=""with""]"	582	582	40 tokens each side, sentence-bounded	se_batch_assoc_bnc.txt
+enTenTen21	associated with	"[lc=""associate|associates|associated|associating""] []{0,3} [lc=""with""]"	10000	10000	40 tokens each side, sentence-bounded	se_batch_assoc_ententen21.txt
+enTenTen21	correlated with	"[lc=""correlate|correlates|correlated|correlating""] []{0,3} [lc=""with""]"	10000	10000	40 tokens each side, sentence-bounded	se_batch_assoc_ententen21.txt
+enTenTen21	cause	"[lemma=""cause"" & tag=""V.*""]"		10000	truncated to 100 characters each side	se_ententen21__cause.csv
+COCA	BASELINE anchor about	about		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor after	after		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor also	also		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor could	could		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor in	in		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor into	into		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor over	over		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor then	then		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor when	when		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor where	where		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	BASELINE anchor would	would		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	account for	ACCOUNT_v for	31345	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	affect	AFFECT_v	98073	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	allow	ALLOW_v	288559	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	arise from	ARISE_v from	6859	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	as a result of	as a result of		499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	assist	ASSIST_v	33161	490	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	associated with	associate|associates|associated|associating with	59976	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	because (clause)	because		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	because of	because of		499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	blame	BLAME_v	58815	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	block	BLOCK_v	34808	495	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	bring about	BRING_v about	8838	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	cause	CAUSE_v	170629	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	compel	COMPEL_v	14061	497	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	contribute to	CONTRIBUTE_v to	41512	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	convince	CONVINCE_v	43085	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	correlated with	correlate|correlates|correlated|correlating with	6202	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	create	CREATE_v	314631	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	credit	CREDIT_v	15608	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	demand	DEMAND_v	55168	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	depend on	DEPEND_v on|upon	46895	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	deter	DETER_v	6107	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	discourage	DISCOURAGE_v	12176	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	due to	due to		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	enable	ENABLE_v	39743	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	encourage	ENCOURAGE_v	73251	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	enough for	enough for		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	ensure	ENSURE_v	58156	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	facilitate	FACILITATE_v	19617	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	fail to	FAIL_v to	60107	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	force	FORCE_v	107636	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	foster	FOSTER_v	12185	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	generate	GENERATE_v	51796	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	get	GET_v	3347615	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	give rise to	GIVE_v rise to	4662	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	guarantee	GUARANTEE_v	27824	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	help	HELP_v	606887	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	hinder	HINDER_v	5307	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	induce	INDUCE_v	12416	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	influence	INFLUENCE_v	45471	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	inhibit	INHIBIT_v	5908	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	inspire	INSPIRE_v	41223	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	intend	INTEND_v	57970	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	lead to	LEAD_v to	108395	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	let	LET_v	780929	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	make	MAKE_v	2290830	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	make a difference to	MAKE_v a difference to	515	80	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	make sure	MAKE_v sure	95177	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	manage to	MANAGE_v to	43168	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	motivate	MOTIVATE_v	19758	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	necessary for	necessary for		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	necessitate	NECESSITATE_v	3052	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	oblige	OBLIGE_v	6663	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	owing to	owing to		432	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	permit	PERMIT_v	33083	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	persuade	PERSUADE_v	17229	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	prevent	PREVENT_v	84179	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	produce	PRODUCE_v	154082	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	promote	PROMOTE_v	69398	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	prompt	PROMPT_v	20380	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	protect	PROTECT_v	126672	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	provoke	PROVOKE_v	10860	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	render	RENDER_v	20635	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	require	REQUIRE_v	209616	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	required for	required for		499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	restrain	RESTRAIN_v	6087	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	result from	RESULT_v from	11342	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	result in	RESULT_v in	49912	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	save	SAVE_v	161469	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	secure	SECURE_v	32084	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	spark	SPARK_v	12395	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	stem from	STEM_v from	8328	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	stimulate	STIMULATE_v	10913	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	stop	STOP_v	366567	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	succeed in	SUCCEED_v in	11652	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	sufficient for	sufficient for		237	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	tempt	TEMPT_v	8990	497	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	thanks to	thanks to		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	trigger	TRIGGER_v	18981	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+COCA	yield	YIELD_v	23640	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt

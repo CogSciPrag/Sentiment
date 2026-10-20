@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "causesent"
+version = "1.0.0"
+description = "Finding and scoring the effects of causal expressions in corpus text"
+requires-python = ">=3.9,<3.12"
+license = {text = "MIT"}
+dependencies = [
+  "spacy==3.6.0",
+  "numpy>=1.26,<2",
+  "pandas>=2.0",
+  "scipy>=1.10",
+  "matplotlib>=3.7",
+  "nltk>=3.8",
+]
+
+[project.optional-dependencies]
+reddit = ["zstandard>=0.21"]
+spotcheck = ["openpyxl>=3.1"]
+
+[tool.setuptools]
+packages = ["causesent"]

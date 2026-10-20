@@ -1,0 +1,10 @@
+# Python 3.11 (spaCy 3.6.0 supports Python 3.8-3.11). The parser version matters: install exactly spaCy 3.6.0 and
+# en_core_web_sm 3.6.0 (see README). Then: pip install -e .
+spacy==3.6.0
+numpy>=1.26,<2
+pandas>=2.0
+scipy>=1.10
+matplotlib>=3.7
+nltk>=3.8          # Reddit sentence splitting (as in Glass 2023)
+zstandard>=0.21    # step 1 only: reading the Reddit dump
+openpyxl>=3.1      # spot check spreadsheet only
