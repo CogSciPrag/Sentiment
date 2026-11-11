@@ -3,13 +3,14 @@ Input: data/results/extra/ (step 10). Output: data/figures/. Usage: python figur
 """
 import numpy as np, pandas as pd, matplotlib
 from causesent import config
+import causesent.style  # Helvetica
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
-from causesent.targets import PREVENTION, EFFECT_LEFT
+from causesent.targets import PREVENTION, EFFECT_LEFT, DISPLAY
 EXTRA = str(config.RESULTS / "extra") + "/"; FIG = str(config.FIGURES) + "/"; config.ensure_dirs()
 F = pd.read_csv(EXTRA + "frame_by_frame_vs_baseline.tsv", sep="\t"); S = pd.read_csv(EXTRA + "word_stats.tsv", sep="\t")
 CM = LinearSegmentedColormap.from_list("rg", ["#b2182b", "#e8816b", "#f4f3ef", "#7fbf7b", "#1b7837"])
-lab = lambda it: it + (" *" if it == "make" else "") + (" †" if it in PREVENTION else "") + (" ←" if it in EFFECT_LEFT else "")
+lab = lambda it: DISPLAY.get(it, it) + (" *" if it == "make" else "") + (" †" if it in PREVENTION else "") + (" ←" if it in EFFECT_LEFT else "")
 fig, axes = plt.subplots(1, 2, figsize=(16, 14), sharey=True)
 order = S[(S.corpus == "reddit") & (S.scoring == "raw")].sort_values("diff").item.tolist()
 order = [o for o in order if o in set(F[F.scoring == "raw"].item)]

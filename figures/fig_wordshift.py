@@ -6,6 +6,7 @@ Input: data/results/extra/ (step 10). Output: data/figures/. Usage: python figur
 """
 import numpy as np, pandas as pd, matplotlib
 from causesent import config
+import causesent.style  # Helvetica
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
 from collections import Counter
 from causesent.scoring import H
@@ -15,7 +16,7 @@ A = pd.read_pickle(EXTRA + "all_lines.pkl")
 
 def freqs(D):
     c = Counter()
-    for col in ["N_words", "V_words"]:
+    for col in (["N_keys", "V_keys"] if "N_keys" in D else ["N_words", "V_words"]):   # looked-up words (form-first)
         for s in D[col].dropna():
             c.update(w for w in str(s).split() if w in H)
     tot = sum(c.values())
