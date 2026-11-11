@@ -252,3 +252,80 @@ COCA	tempt	TEMPT_v	8990	497	KWIC as shown by english-corpora.org (random sample)
 COCA	thanks to	thanks to		500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
 COCA	trigger	TRIGGER_v	18981	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
 COCA	yield	YIELD_v	23640	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_20261004.txt
+enTenTen21	so	"[lc=""so""]"	113007075	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	so	"[lc=""so""]"	239683	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	therefore	"[lc=""therefore""]"	7604171	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	therefore	"[lc=""therefore""]"	22985	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	thus	"[lc=""thus""]"	8079156	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	thus	"[lc=""thus""]"	20229	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	hence	"[lc=""hence""]"	2170191	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	hence	"[lc=""hence""]"	4689	4689	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	consequently	"[lc=""consequently""]"	855907	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	consequently	"[lc=""consequently""]"	2490	2490	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	as a consequence (of)	"[lc=""as""] [lc=""a|an""] [tag=""J.*""]? [lc=""consequence""]"	253066	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	as a consequence (of)	"[lc=""as""] [lc=""a|an""] [tag=""J.*""]? [lc=""consequence""]"	921	921	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	since	"[lc=""since""]"	30383952	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	since	"[lc=""since""]"	49010	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	as	"(<s> [lc=""as""]) | ([word="",""] [lc=""as""])"	62645953	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	as	"(<s> [lc=""as""]) | ([word="",""] [lc=""as""])"	123009	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	for	"[word="",""] [lc=""for""]"	14267182	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	for	"[word="",""] [lc=""for""]"	47403	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	given that	"[lc=""given""] [lc=""that""]"	913011	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	given that	"[lc=""given""] [lc=""that""]"	1242	1242	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	on account of	"[lc=""on""] [lc=""account""] [lc=""of""]"	286128	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	on account of	"[lc=""on""] [lc=""account""] [lc=""of""]"	497	497	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	in light of	"[lc=""in""] [lc=""the""]? [lc=""light""] [lc=""of""]"	743131	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	in light of	"[lc=""in""] [lc=""the""]? [lc=""light""] [lc=""of""]"	1935	1935	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	explain	"[lemma=""explain"" & tag=""V.*""]"	9661673	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	explain	"[lemma=""explain"" & tag=""V.*""]"	18722	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	reason	"[lemma=""reason"" & tag=""N.*""]"	14453186	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	reason	"[lemma=""reason"" & tag=""N.*""]"	28578	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	why	"[lc=""why""]"	23618924	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	why	"[lc=""why""]"	48678	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	the cause of	"[lc=""cause|causes""] [lc=""of""]"	1842839	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	the cause of	"[lc=""cause|causes""] [lc=""of""]"	3955	3955	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	the effect of X on Y	"[lc=""effect|effects""] [lc=""of""]"	3844991	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	the effect of X on Y	"[lc=""effect|effects""] [lc=""of""]"	10407	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	in order to	"([lc=""in""] [lc=""order""] [lc=""to|that|for""]) | ([lc=""so""] [lc=""as""] [lc=""to""])"	9164862	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	in order to	"([lc=""in""] [lc=""order""] [lc=""to|that|for""]) | ([lc=""so""] [lc=""as""] [lc=""to""])"	14534	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	result of	"[lc=""the|a|an""] [tag=""J.*""]? [lc=""result|results""] [lc=""of""]  (then negative filter: n-1 -1 1 [lc=""as""])"	2461587	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	result of	"[lc=""the|a|an""] [tag=""J.*""]? [lc=""result|results""] [lc=""of""]  (then negative filter: n-1 -1 1 [lc=""as""])"	5555	5555	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	consequence of	"[lc=""the|a|an""] [tag=""J.*""]? [lc=""consequence|consequences""] [lc=""of""]  (then negative filter: n-1 -1 1 [lc=""as""])"	644617	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	consequence of	"[lc=""the|a|an""] [tag=""J.*""]? [lc=""consequence|consequences""] [lc=""of""]  (then negative filter: n-1 -1 1 [lc=""as""])"	2342	2342	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	responsible for	"[lc=""responsible""] [lc=""for""]"	3398424	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	responsible for	"[lc=""responsible""] [lc=""for""]"	6758	6758	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+enTenTen21	as a result (of)	"[lc=""as""] [lc=""a|an""] [tag=""J.*""]? [lc=""result""]"	3545327	10000	40 tokens each side, sentence-bounded	se_batch_planned_20261102_ententen21.txt
+BNC	as a result (of)	"[lc=""as""] [lc=""a|an""] [tag=""J.*""]? [lc=""result""]"	8103	8103	40 tokens each side, sentence-bounded	se_batch_planned_20261102_bnc.txt
+COCA	so	so	2901039	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	therefore	therefore	89982	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	thus	thus	118656	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	hence	hence	22429	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	consequently	consequently	12152	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	as a consequence (of)	as a consequence	3515	367	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	as a consequence (of)	as a|an _j* consequence	208	45	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	since	since	495043	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	as	. as	306104	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	for	, for	319695	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	given that	given that	14759	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	on account of	on account of	3069	315	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	in light of	in light of	9313	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	in light of	in the light of	2601	257	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	explain	EXPLAIN_v	193276	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	reason	REASON_n	295585	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	why	why	833241	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	the cause of	cause|causes of	27976	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	the effect of X on Y	effect|effects of	62410	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	in order to	in order to	91548	498	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	in order to	in order that	1124	134	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	in order to	in order for	5121	499	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	in order to	so as to	6537	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	result of	the|a|an result|results of	60577	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	result of	the|a|an _j* result|results of	3934	397	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	consequence of	the|a|an consequence|consequences of	10724	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	consequence of	the|a|an _j* consequence|consequences of	4320	447	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	responsible for	responsible for	43828	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	as a result (of)	as a result	47363	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+COCA	as a result (of)	as a|an _j* result	550	47	KWIC as shown by english-corpora.org (random sample)	coca_batch_planned_20261102.txt
+enTenTen21	determine	"[lemma=""determine"" & tag=""V.*""]"	8566042	10000	40 tokens each side, sentence-bounded	se_batch_determine_20261103_ententen21.txt
+BNC	determine	"[lemma=""determine"" & tag=""V.*""]"	13474	10000	40 tokens each side, sentence-bounded	se_batch_determine_20261103_bnc.txt
+COCA	determine	DETERMINE_v	116138	500	KWIC as shown by english-corpora.org (random sample)	coca_batch_determine_20261103.txt
