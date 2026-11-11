@@ -1,4 +1,4 @@
-"""Step 6 (enTenTen21, BNC, COCA): score the concordance samples of the 80 studied expressions.
+"""Step 6 (enTenTen21, BNC, COCA): score the concordance samples of the 101 studied expressions.
 
 For each concordance line: rebuild the sentence around the search hit (left context, hit, right context, cut at the
 sentence boundaries Sketch Engine marks with </s><s>), parse it with spaCy, and analyse only the searched expression
@@ -7,7 +7,8 @@ at the hit with causesent/frames.py. One record per line (or 'not matched' when 
   --source sketchengine   reads data/raw/sketchengine/se_batch_*.txt and se_*.csv (Sketch Engine CSV exports)
   --source coca           reads data/work/coca_prepared.txt (step 5)
 Baseline samples ('BASELINE' in the sample name, or the file se_baseline_other_verbs.txt) are skipped here; they are
-scored in steps 7 and 8.
+scored in steps 7 and 8. Samples listed in targets.SKIP_SAMPLES (the old 'as a result of' samples, replaced by the
+'as a result (of)' resample; COCA '. as') are skipped too.
 
 Output: data/work/<source>_scored/<sample>.records.tsv, one file per corpus and expression. Existing files are skipped.
 Usage:  python pipeline/06_score_concordances.py --source sketchengine
@@ -15,7 +16,7 @@ Usage:  python pipeline/06_score_concordances.py --source sketchengine
 import argparse, csv, glob, io, os, re
 import pandas as pd, spacy
 from causesent import config, frames as F
-from causesent.targets import ITEMS
+from causesent.targets import ITEMS, SKIP_SAMPLES
 
 ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
 ap.add_argument("--source", choices=["sketchengine", "coca"], required=True)
@@ -44,6 +45,7 @@ def clean(s): return re.sub(r"\s+", " ", s.replace("</s>", " ").replace("<s>", "
 for path in inputs:
     for name, body in samples(path):
         if "BASELINE" in name.upper(): continue
+        if name.replace(".csv", "") in SKIP_SAMPLES: print(f"{name}: skipped (targets.SKIP_SAMPLES)"); continue
         out = outdir / name.replace(".csv", ".records.tsv")
         if out.exists(): continue
         rows = list(csv.reader(io.StringIO(body)))

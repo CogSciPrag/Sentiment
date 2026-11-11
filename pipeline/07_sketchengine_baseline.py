@@ -5,6 +5,12 @@ Sketch Engine in the same format as the item samples. For each line the verb at 
 'other verbs', with the verb rules of causesent/frames.py. Lines whose verb is the trigger lemma of a studied
 expression are kept but marked 'target verb' (and left out of the results).
 
+Since 1 Nov 2026 the same lines also give the baseline for the connectives (Glass's): every subordinating conjunction
+(spaCy SCONJ, other than because / 'cause / cuz / cos) in the rebuilt sentence around the hit, scored on its main clause
+as the generic item 'other conjunctions'. (Sketch Engine's tagset has no separate tag for subordinating conjunctions.)
+Since 2 Nov 2026 they also give the NOUN baseline for the noun items (the cause of, result of, ...): every other noun in
+'the N of X' or 'X is the N of Y' in the sentence, X scored, as the generic item 'other nouns' (frames._noun_base).
+
 Input:  data/raw/sketchengine/se_baseline_other_verbs.txt
 Output: data/work/sketchengine_baseline.records.tsv
 Usage:  python pipeline/07_sketchengine_baseline.py
@@ -15,7 +21,9 @@ from causesent import config, frames as F, targets
 
 ITEM = "other verbs"
 targets.ITEMS[ITEM] = ("*", "verb")          # a generic verb item: the same verb rules as cause, ensure, ...
-TARGET_LEMMAS = {lem for lem, kind in list(targets.ITEMS.values()) if lem != "*"}
+CONJ = "other conjunctions"; targets.ITEMS[CONJ] = ("*", "sconj")
+NOUN = "other nouns"; targets.ITEMS[NOUN] = ("*", "noun_base")     # noun baseline (decided 1 Nov 2026; added 2 Nov 2026)
+TARGET_LEMMAS = {lem for lem, kind in list(targets.ITEMS.values()) if lem != "*"} - targets.BASELINE_KEEP
 nlp = spacy.load(config.SPACY_MODEL, disable=["ner"])
 def clean(s): return re.sub(r"\s+", " ", s.replace("</s>", " ").replace("<s>", " ")).strip()
 
@@ -38,6 +46,13 @@ for name, body in parts:
         K = clean(kwic); k0 = len(L) + (1 if L else 0)
         texts.append((L + " " + K + " " + R).strip()); spans.append((k0, k0 + len(K)))
     for li, (doc, (s0, s1)) in enumerate(zip(nlp.pipe(texts, batch_size=500), spans)):
+        for c in doc:                         # connective baseline: the subordinating conjunctions in the sentence
+            if c.pos_ == "SCONJ":
+                for g in F.analyse(doc, CONJ, [c]):
+                    g.update(corpus=corpus, line=li, sentence=texts[li][:300]); recs.append(g)
+            elif c.pos_ == "NOUN":            # noun baseline: 'the N of X' / 'X is the N of Y' (X scored)
+                for g in F.analyse(doc, NOUN, [c]):
+                    g.update(corpus=corpus, line=li, sentence=texts[li][:300]); recs.append(g)
         verb = [t for t in doc if s0 <= t.idx < s1 and (t.pos_ == "VERB" or t.tag_.startswith("VB"))][:1]
         base = dict(corpus=corpus, item=ITEM, line=li, sentence=texts[li][:300])
         if not verb: recs.append(dict(base, frame="not matched")); continue

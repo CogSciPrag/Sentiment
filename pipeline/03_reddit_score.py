@@ -17,6 +17,9 @@ nproc = int(sys.argv[1]) if len(sys.argv) > 1 else 2
 CHUNK = 20000
 outdir.mkdir(parents=True, exist_ok=True)
 nlp = spacy.load(config.SPACY_MODEL, disable=["ner"])
+# Optional (add-on runs, 3 Nov 2026): CAUSESENT_ONLY_ITEMS="determine" (items separated by |) scores only those items, so that
+# sentences selected for one new item do not produce a second copy of the records of the other items.
+ONLY = {x for x in os.environ.get("CAUSESENT_ONLY_ITEMS", "").split("|") if x} or None
 
 def read_block(fn):
     with gzip.open(fn, "rb") as fh:            # binary: sentences may contain \r or other line separators
@@ -33,7 +36,7 @@ for bfn in sorted(glob.glob(str(src / "sentences" / "block_*.tsv.gz"))):
         chunk = sents[c0:c0 + CHUNK]
         rows = []
         for (idx, s), doc in zip(chunk, nlp.pipe((s for _, s in chunk), batch_size=500, n_process=nproc)):
-            for r in F.find_all(doc):
+            for r in F.find_all(doc, only_items=ONLY):
                 r["sent_idx"] = idx; r["trigger"] = doc[r["trigger_i"]].text; r["sentence"] = s[:300]
                 rows.append(r)
         pd.DataFrame(rows).to_csv(str(out) + ".tmp", sep="\t", index=False, compression="gzip")

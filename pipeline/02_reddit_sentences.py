@@ -9,6 +9,8 @@ Which sentences are saved (--select):
   study  sentences containing a word form of one of the 80 studied expressions (causesent/targets.py)
   glass  sentences containing one of the verbs of the Glass replication (glass_replication/targets.py)
   all    every sentence (used with --max-words 10000000 for the baseline and the 10-million-word replication)
+  determine  sentences containing a form of 'determine' (added 3 Nov 2026 for the add-on run of that item; same comment
+             filters, clean-up and sentence numbering as 'study', so the sentence numbers match the main run)
 
 Output folder data/work/<name>/: sentences/block_#####.tsv.gz (sentence number, words before it, sentence),
 word_counts.tsv (lemma counts, as in Glass), pass1_stats.txt. The run is resumable: it checkpoints every 100,000
@@ -26,13 +28,17 @@ from causesent import config
 
 ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
 ap.add_argument("name", help="output folder name under data/work/")
-ap.add_argument("--select", choices=["study", "glass", "all"], required=True)
+ap.add_argument("--select", choices=["study", "glass", "all", "determine"], required=True)
 ap.add_argument("--max-words", type=int, default=0, help="Glass's word budget (reddit_max); 0 = whole input")
 ap.add_argument("inputs", nargs="*", help="AskReddit JSONL.gz file(s); default: the output of step 1")
-a = ap.parse_args()
+a = ap.parse_intermixed_args()       # inputs may come before or after the options
 inputs = a.inputs or [str(config.WORK / "reddit" / "askreddit_2018-01.jsonl.gz")]
 if a.select == "study":
     from causesent.targets import has_target
+elif a.select == "determine":
+    import re
+    _RXD = re.compile(r"\bdetermin(?:e|es|ed|ing)\b", re.I)
+    has_target = lambda s: _RXD.search(s) is not None
 elif a.select == "glass":
     spec = importlib.util.spec_from_file_location("glass_targets", config.REPO / "glass_replication" / "targets.py")
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m); has_target = m.has_target

@@ -1,7 +1,7 @@
 """Step 10: extra analyses on the scored lines (AskReddit is the reference corpus for the baseline comparisons here).
 
   word_stats.tsv              per expression, corpus and scoring: mean, distribution (% below 4 / 4-6 / above 6), rank
-                              among the 80 expressions, a frame-adjusted mean (the expression's frame means weighted by
+                              among the studied expressions, a frame-adjusted mean (the expression's frame means weighted by
                               the baseline's mix of frames), and for AskReddit the comparison with the baseline (Welch,
                               Cohen's d, Holm) and the share of other verbs whose mean is lower
   frame_by_frame_vs_baseline.tsv   AskReddit: each expression vs the baseline within the same frame
@@ -24,13 +24,14 @@ A = None
 for sc in ["raw", "band", "war", "adj"]:
     L = pd.read_pickle(config.RESULTS / f"lines_{sc}.pkl").reset_index(drop=True)
     if A is None:
-        A = L[["corpus", "item", "frame", "verb", "N_words", "V_words", "N_mods"]].copy()
+        A = L[[c for c in ["corpus", "item", "frame", "verb", "N_words", "V_words", "N_mods", "N_keys", "V_keys", "polarity"]
+               if c in L.columns]].copy()
     else:   # the four files list the same lines in the same order
         assert len(L) == len(A) and (L["item"].values == A["item"].values).all() and (L["frame"].values == A["frame"].values).all()
     A[f"N_{sc}"] = L.score_N.values; A[f"V_{sc}"] = L.score_V.values; A[f"agg_{sc}"] = L.agg_score.values
 A.to_pickle(os.path.join(OUT, "all_lines.pkl"))
 B = A[(A.item == SL.BASELINE) & (A.corpus == "reddit")]
-T = A[A.item != SL.BASELINE]
+T = A[~A.item.isin([SL.BASELINE, SL.BASELINE_SCONJ, SL.BASELINE_NOUN])]
 
 grp_of = {w: g for g, ws in WORD_GROUPS.items() for w in ws}
 missing = [w for w in ITEMS if w not in grp_of]; assert not missing, missing
