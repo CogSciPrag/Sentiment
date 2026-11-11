@@ -1,0 +1,13 @@
+# Corpus text cannot be redistributed (COCA, BNC, enTenTen21, Reddit): data/ holds downloads and derived lines
+data/
+# Lexicons are downloaded separately (see README)
+lexicons/*
+!lexicons/README.md
+!lexicons/labmt_json_to_tsv.py
+# Python / OS
+__pycache__/
+*.egg-info/
+.venv/
+.DS_Store
+# Spot-check verdicts quote corpus lines (COCA): kept out of the public repo
+spot_check/verdicts_*.tsv

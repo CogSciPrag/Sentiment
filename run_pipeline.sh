@@ -3,9 +3,9 @@
 # interruption. Run it from the repository root after installing (see README) and putting the downloaded samples in
 # data/raw/. To run only part of it, copy the lines you need.
 #
-# Rule switches (off by default; see causesent/config.py): export CAUSESENT_DOUBLE_OBJECT=1 CAUSESENT_QUANTITY=1
-# CAUSESENT_NO_PRONOUNS=1 before running to use the October 2026 refinements. Use a separate CAUSESENT_DATA folder for
-# each set of rules, since scored lines are not recomputed when they already exist.
+# Rule switches (on by default; see causesent/config.py and docs/scoring_rules.md section 8). To reproduce the first
+# results: export CAUSESENT_RULES=main CAUSESENT_LABMT=labMT2english.txt. Use a separate CAUSESENT_DATA folder for each
+# set of rules, since scored lines are not recomputed when they already exist.
 set -euo pipefail
 N=${N_PROCESSES:-2}     # parallel spaCy processes for the Reddit steps
 
@@ -28,6 +28,7 @@ python pipeline/08_coca_baseline.py
 # --- statistics and figures
 python pipeline/09_statistics.py
 python pipeline/10_extra_statistics.py
+# python pipeline/11_make_get_followup.py   # version C make/get follow-up: NOT run in the Nov 2026 rerun (Dean, 1 Nov 2026)
 for sc in raw band adj war; do
   python figures/fig_effect_sentiment.py "$sc"
   python figures/fig_N_V.py "$sc"
@@ -36,6 +37,8 @@ python figures/fig_distributions_and_groups.py
 python figures/fig_frame_by_frame.py
 python figures/fig_warriner.py
 python figures/fig_wordshift.py
+for sc in raw band adj war; do python figures/fig_violins.py "$sc"; done   # distributions per line (added 2 Nov 2026)
+for sc in raw band adj war; do python figures/fig_three_groups.py "$sc"; python figures/fig_three_groups_icons.py "$sc"; done   # cause / sufficiency-entailing / not (added 3 Nov 2026)
 
 # --- the Glass (2023) replication: see glass_replication/README.md (it re-uses the 10-million-word sentences above)
 # --- the COCA spot check: python spot_check/sample_lines.py && python spot_check/build_xlsx.py

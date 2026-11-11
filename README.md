@@ -22,7 +22,7 @@ sits about one point below it.
 2. **Parses** each line with spaCy and finds the studied expression.
 3. **Finds the effect** the expression introduces (its object, its complement, or, for *result from*, *because of*
    etc., the phrase before it), tags the construction ("frame"), and **scores** the effect word by word with the
-   Hedonometer (labMT 2.0: 1 = sad, 9 = happy, 5 = neutral).
+   Hedonometer (labMT-en-v2, the list Glass used: 1 = sad, 9 = happy, 5 = neutral).
 4. **Compares** each expression with a baseline of all other lexical verbs in the same corpus, scored by the same
    rules (Welch's t-test, Cohen's d, Holm correction).
 
@@ -47,7 +47,7 @@ analysis, obtain the samples and place them under `data/raw/`:
   sample of all verbs, every lexical verb in 5,500 random lines around 11 frequent function words.
 
 Lexicons go in `lexicons/` (see [`lexicons/README.md`](lexicons/README.md)): the Hedonometer word list
-(labMT 2.0 English) and, for one robustness check, the Warriner et al. (2013) valence norms.
+(labMT-en-v2) and, for one robustness check, the Warriner et al. (2013) valence norms.
 
 ## Installation
 
@@ -82,6 +82,7 @@ repository; set `CAUSESENT_DATA` to use another folder.
 | 8 | `pipeline/08_coca_baseline.py` | COCA baseline |
 | 9 | `pipeline/09_statistics.py` | every expression against its corpus's baseline, for 4 scoring variants × 3 measures; summary tables by expression and by frame |
 | 10 | `pipeline/10_extra_statistics.py` | further analyses: distributions, ranks among other verbs, frame-adjusted means, frame-by-frame comparisons, word groups |
+| 11 | `pipeline/11_make_get_followup.py` | the *make* / *get* follow-up: their two-object lines added back (version C) and compared with the headline (version B) |
 | – | `figures/*.py` | figures (main figure: `fig_effect_sentiment.py`) |
 
 Parsing is the slow part: the Reddit steps parse about 2 million sentences, the concordance steps about 1.7 million
@@ -98,16 +99,21 @@ The full rules, with examples, are in [`docs/scoring_rules.md`](docs/scoring_rul
 - **Effect before the expression** (*result from*, *stem from*, *because of*, *due to* …): its head noun, or the
   subject and verb of the clause (*the game was cancelled because of rain* → *game* + *cancel*).
 - **Correlation** (*associated with*, *correlated with*): both sides are scored.
-- **Scores.** Each word is a lemma looked up in the Hedonometer. A line scores the mean of N and V (or whichever is
+- **Scores.** Each word is looked up in the Hedonometer as it occurs, or by its lemma when the form is not listed. A line scores the mean of N and V (or whichever is
   rated); without a complement, the head noun. An expression's mean pools all its lines and is reported only with at
   least 30 scored lines per corpus.
 - **Which lines count.** Passives and negated effects (*persuaded him not to go*) are reported separately; negation
-  of the causal word itself (*didn't persuade him*) is kept, as in Glass (2023). *make* and *get* count only in their
-  causative frames.
+  of the causal word itself (*didn't persuade him*, *nothing caused*) is kept, as in Glass (2023), and every result is
+  given for the positive forms, the negative forms and both combined (the headline). *make* and *get* count only in
+  their causative frames (their two-object lines are left out). Colloquial *'cause* = *because* is left out
+  of *cause*.
 - **Robustness.** Four scoring variants: raw (main); neutral words (4–6) removed; adjectives and noun compounds
   averaged into the noun; the Warriner et al. (2013) valence norms instead of the Hedonometer.
-- **Rule switches.** Three refinements (scoring the second noun in *caused me concerns*; looking through quantity
-  words, *a lot of questions* → *question*; not scoring pronouns) are available as switches, off by default; see
+- **Rule switches.** Five refinements agreed in October 2026 are on by default: scoring the second noun of a double
+  object for every verb (*caused me concerns* → *concern*, also when spaCy misreads it as a bare verb); looking
+  through quantity words (*a lot of questions* → *question*); not scoring pronouns; and leaving colloquial *'cause* =
+  *because* out of *cause*. Each can be switched off, and `CAUSESENT_RULES=main` with
+  `CAUSESENT_LABMT=labMT2english.txt` reproduces the first results; see
   [`docs/scoring_rules.md`](docs/scoring_rules.md#8-rule-switches-october-2026).
 
 ## The Glass replication
@@ -122,11 +128,13 @@ direct-object mean 3.97 against her 3.96), then on the whole month (4.5 million 
 ```
 causesent/              the library
   config.py             paths and rule switches
-  targets.py            the 80 studied expressions, their kinds, word groups, and the Reddit pre-filter
+  targets.py            the 101 studied expressions, their kinds, word groups, and the Reddit pre-filter
+  senses.py             sense rules for so, since, as, for, therefore, thus, hence, consequently (2 Nov 2026)
   frames.py             finding the effect and tagging the frame (the rules)
+  because_filter.py     telling colloquial 'cause = because from the verb
   scoring.py            scoring variants, which lines count, loading the scored lines
   stats.py              Welch's t-test, Cohen's d, Holm correction
-pipeline/               steps 1-10, run in order
+pipeline/               steps 1-11, run in order
 figures/                figures from the results
 glass_replication/      re-running Glass's (2023) own code on AskReddit
 spot_check/             a manual check of 800 random scored COCA lines (10 per expression)
@@ -143,9 +151,9 @@ run_pipeline.sh         the whole analysis in order
 | `results/pvalues_all.tsv` | the main results: for each scoring × corpus × measure × expression, n, mean, baseline, difference with 95% CI, p, Cohen's d, Holm-corrected p |
 | `results/tables/<scoring>_<corpus>_aggregate.tsv` | per expression: lines, mean, % of effects below 5, passive and negated groups |
 | `results/tables/<scoring>_<corpus>_by_frame.tsv` | per expression and frame: lines and means of N, V and the line score |
-| `results/extra/*.tsv` | the further analyses of step 10 |
+| `results/extra/*.tsv` | the further analyses of steps 10 and 11 |
 | `results/lines_<scoring>.pkl` | every line in the results with its scored words and scores (no corpus text) |
-| `work/*_scored/` | every analysed line: frame, scored lemmas, scores, and the first 300 characters of the sentence (corpus text: do not redistribute) |
+| `work/*_scored/` | every analysed line: frame, scored lemmas and word forms, scores, and the first 300 characters of the sentence (corpus text: do not redistribute) |
 | `figures/` | figures |
 
 ## Reproducibility notes
