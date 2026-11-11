@@ -1,13 +1,16 @@
-"""COCA spot check, step 2: the spreadsheet with the 800 sampled lines, the words scored, and the manual check.
+"""COCA spot check, step 2: the spreadsheet with the sampled lines (10 per word; 1,000 in the 2 Nov 2026 run), the words scored, and the manual check.
 
 The manual check (verdicts.py: ok / partly / wrong, with the type of problem) was made by reading all 800 lines of the
 sample drawn under the main rules (seed 20261019). It refers to the sample by position, so it is only meaningful for
-that sample; with a rule switch on, the sample and its scored words change.
+that sample; with a rule switch on, the sample and its scored words change. Since 1 Nov 2026 the verdicts are matched
+by LINE, not by position: verdicts_20261019.tsv lists the 800 checked lines (word, COCA reference, line text, the effect
+lemmas then scored, verdict). A verdict is carried over only when the same line is in the new sample with the same
+effect lemmas; otherwise the check is left empty (the note says when an old verdict exists but the effect changed).
 Input: data/results/spot_check/ (sample_lines.py). Output: data/results/spot_check/coca_sample10_scored_words.xlsx
 Usage: python spot_check/build_xlsx.py
 """
 import pandas as pd
-from verdicts import V
+from pathlib import Path
 from causesent import config
 from causesent.targets import WORD_GROUPS
 from openpyxl import Workbook
@@ -18,15 +21,42 @@ from openpyxl.worksheet.datavalidation import DataValidation
 
 G = config.RESULTS / "spot_check"
 S = pd.read_csv(G / "sample10.tsv", sep="\t", index_col=0).rename(columns={"item": "word"})
+RULES = (G / "rules.txt").read_text().strip() if (G / "rules.txt").exists() else ""
+if "polarity" not in S: S["polarity"] = ""
+# Manual checks, matched by LINE (item, COCA reference, line text) and carried over only with the same effect lemmas.
+# verdicts_20261019.tsv: the 800-line check of 19 Oct 2026 (main rules); verdicts_20261102.tsv: first pass by Claude on
+# 2 Nov 2026 of the lines of the 101-word run that the 19 Oct check did not cover (to be reviewed by Dean). A later check of
+# the same line with the same effect words takes precedence.
+VERDICTS = [(lab, f) for lab, f in [("19 Oct 2026", "verdicts_20261019.tsv"), ("2 Nov 2026", "verdicts_20261102.tsv")]
+            if (Path(__file__).resolve().parent / f).exists()]
+VK = [(lab, {(r.item, r.reference, r.line_text): r for r in
+             pd.read_csv(Path(__file__).resolve().parent / f, sep="\t", keep_default_na=False).itertuples()})
+      for lab, f in VERDICTS]
+def carried(x):
+    """(check, problem type, note) of the latest check of this line with the same effect lemmas."""
+    nl = lambda v: v if isinstance(v, str) else ""
+    key, lem = (x["word"], x["reference"], x["line_text"]), (nl(x.get("N_lemmas")), nl(x.get("V_lemmas")))
+    other = None
+    for lab, K in reversed(VK):
+        o = K.get(key)
+        if o is None: continue
+        if lem == (o.N_lemmas, o.V_lemmas):
+            note = o.note if lab == "19 Oct 2026" else ("first pass 2 Nov 2026 (Claude)" + (": " + o.note if o.note else ""))
+            return (o.check, o.problem_type, note)
+        other = other or (lab, o)
+    if other:
+        lab, o = other
+        return ("", "", f"checked on {lab} ({o.check}) with other effect words ({o.N_lemmas} | {o.V_lemmas}): verdict not carried over")
+    return ("", "", "")
 order = pd.DataFrame([(w, g) for g, ws in WORD_GROUPS.items() for w in ws], columns=["item", "group"]); grp = dict(zip(order["item"], order["group"]))
 L = pd.read_csv(G / "coca_lines_all.tsv", sep="\t", low_memory=False)
-S["check"] = [V.get(i, ("ok", "", ""))[0] for i in S.index]
-S["ptype"] = [V.get(i, ("ok", "", ""))[1] for i in S.index]
-S["note"] = [V.get(i, ("ok", "", ""))[2] for i in S.index]
+S[["check", "ptype", "note"]] = [carried(x) for _, x in S.iterrows()]
+N_CARRIED = int(S.check.ne("").sum())
 S["effect_side"] = ["left of the word" if e else "right of the word" for e in S.effect_left]
 S["prev"] = ["yes" if p else "" for p in S.prevention]
 
 wb = Workbook()
+SHEET = f"Sample ({len(S)} lines)"
 H = Font(bold=True, color="FFFFFF"); HF = PatternFill("solid", fgColor="2B4C7E")
 WR = Alignment(wrap_text=True, vertical="top"); TOP = Alignment(vertical="top")
 thin = Side(style="thin", color="D0D0D0")
@@ -43,25 +73,30 @@ def header(ws, names, widths, height=None):
 ws = wb.active; ws.title = "Read me"
 txt = [
  ("COCA spot check: which words were scored", "title"),
- ("For each of the 80 studied expressions: 10 random COCA lines among those that entered the results, with the word(s) scored and a manual check of each.", ""),
+ ("For each of the " + str(S.word.nunique()) + " studied expressions with COCA lines: 10 random COCA lines among those that entered the results, with the word(s) scored and a manual check of each.", ""),
  ("", ""),
  ("How it was made", "h"),
- ("• Source lines: the COCA samples (500 random concordance lines per expression from english-corpora.org; see docs/queries.tsv).", ""),
- ("• Scored with pipeline steps 5 and 6 (causesent/frames.py, causesent/scoring.py), spaCy 3.6.0 with en_core_web_sm 3.6.0, Hedonometer labMT 2.0 English.", ""),
- ("• Same rules as the results: main group only (passives and negated effects out), make/get causative frames only, with/for-N rule; raw Hedonometer scores.", ""),
- ("• Sample: 10 lines per word, drawn at random (numpy default_rng, seed 20261019) from the lines that received a score. 'get' has only 18 such lines.", ""),
- ("• The manual check was made on the sample drawn under the main rules; it refers to the lines by position in the sample.", ""),
+ ("• Source lines: the COCA samples (random concordance lines per expression from english-corpora.org; sizes and queries in docs/queries.tsv; make / get combined from per-form samples).", ""),
+ ("• Scored with pipeline steps 5 and 6 (causesent/frames.py, causesent/scoring.py), spaCy 3.6.0 with en_core_web_sm 3.6.0, Hedonometer " + config.LABMT.name + ".", ""),
+ ("• Rules: " + (RULES or "(not recorded)") + ". Same rules as the results: main group only (passives and negated effects out), make/get causative frames only, with/for-N rule; raw Hedonometer scores.", ""),
+ ("• Manual check: " + str(N_CARRIED) + " of the " + str(len(S)) + " lines have a verdict (same COCA line, same effect words): "
+   + str(int(S.note.str.startswith("first pass 2 Nov").sum())) + " from Claude's first pass of 2 Nov 2026 (note 'first pass 2 Nov 2026'; to be reviewed in 'your check'), the others from the check of 19 Oct 2026. "
+   "Empty for lines without a verdict.", ""),
+ ("• Sample: 10 lines per word, drawn at random (numpy default_rng, seed 20261019) from the lines that received a score.", ""),
+ ("• The manual check of 19 Oct 2026 was made on the sample drawn under the main rules; its verdicts (verdicts_20261019.tsv) are matched to this sample line by line.", ""),
  ("", ""),
- ("Columns in 'Sample (800 lines)'", "h"),
+ ("Columns in '" + SHEET + "'", "h"),
  ("• line: the KWIC line, searched word in [[double brackets]]; ' | ' marks a sentence or paragraph break or a COCA copyright gap.", ""),
- ("• frame: the frame the parser assigned. N scored / V scored: lemmas with their Hedonometer score; '(–)' = not in the Hedonometer, so not scored.", ""),
+ ("• frame: the frame the parser assigned. polarity: positive or negative form of the studied word ('didn't cause', 'nothing caused' = negative). "
+   "N scored / V scored: the words with their Hedonometer score. With the form-first rule: 'problems (2.92)' = the word form was scored; "
+   "'ran -> run (5.24)' = the form is not in the Hedonometer, so its lemma was scored; '(–)' = neither is in the Hedonometer, so not scored.", ""),
  ("• line score: N alone, or the mean of N and V when there is a complement. Coloured red to green, centred at 5.", ""),
  ("• effect side: for result from, because of etc. the effect is on the left. prevention = yes: the effect is what does NOT happen.", ""),
  ("• manual check: ok / partly (main word defensible, but part of the effect missed or an extra word scored) / wrong (the scored word is not the effect, or the line should not count). 'problem type' and 'note' explain each flag; see the 'Problem types' sheet.", ""),
  ("• your check / your note: empty, with an ok / partly / wrong drop-down, for your own pass.", ""),
  ("", ""),
  ("Deliberately not flagged", "h"),
- ("• Negation of the causal word itself ('does not require', 'doesn't make a difference to', 'nobody forced me'): kept in the main results, as in Glass (2023).", ""),
+ ("• Negation of the causal word itself ('does not require', 'doesn't make a difference to', 'nobody forced me'): kept in the main results, as in Glass (2023), and marked in the polarity column.", ""),
  ("• The causee as N ('caused me to question', 'forced us to act'): the agreed N + V scoring rule.", ""),
  ("", ""),
  ("Other sheets", "h"),
@@ -75,26 +110,26 @@ for i, (t, kind) in enumerate(txt, 1):
 ws.column_dimensions["A"].width = 140
 
 # ---- Sample
-ws = wb.create_sheet("Sample (800 lines)")
-names = ["#", "word", "group", "COCA reference", "line", "effect side", "prevention", "frame", "N scored", "V scored",
+ws = wb.create_sheet(SHEET)
+names = ["#", "word", "group", "COCA reference", "line", "effect side", "prevention", "frame", "polarity", "N scored", "V scored",
          "line score", "manual check", "problem type", "note", "your check", "your note"]
-header(ws, names, [5, 16, 22, 24, 80, 11, 10, 20, 26, 22, 9, 10, 15, 48, 10, 30], 32)
+header(ws, names, [5, 16, 22, 24, 80, 11, 10, 20, 10, 26, 22, 9, 10, 15, 48, 10, 30], 32)
 r = 2
 for i, x in S.iterrows():
     vals = [i + 1, x["word"], grp.get(x["word"], ""), x["reference"], x["line_text"], x["effect_side"], x["prev"], x["frame"],
-            x["N_scored"] if isinstance(x["N_scored"], str) else "", x["V_scored"] if isinstance(x["V_scored"], str) else "",
+            x["polarity"] if isinstance(x["polarity"], str) else "", x["N_scored"] if isinstance(x["N_scored"], str) else "", x["V_scored"] if isinstance(x["V_scored"], str) else "",
             round(float(x["line_score"]), 2), x["check"], x["ptype"], x["note"], None, None]
     for j, v in enumerate(vals, 1):
-        c = ws.cell(row=r, column=j, value=v); c.alignment = WR if j in (5, 9, 10, 14, 16) else TOP; c.border = Border(bottom=thin)
-    ws.cell(row=r, column=12).fill = PatternFill("solid", fgColor=fills[x["check"]])
+        c = ws.cell(row=r, column=j, value=v); c.alignment = WR if j in (5, 10, 11, 15, 17) else TOP; c.border = Border(bottom=thin)
+    if x["check"] in fills: ws.cell(row=r, column=13).fill = PatternFill("solid", fgColor=fills[x["check"]])
     r += 1
 n = r - 1
-ws.freeze_panes = "C2"; ws.auto_filter.ref = f"A1:P{n}"
-ws.conditional_formatting.add(f"K2:K{n}", ColorScaleRule(start_type="num", start_value=1, start_color="D7301F", mid_type="num",
+ws.freeze_panes = "C2"; ws.auto_filter.ref = f"A1:Q{n}"
+ws.conditional_formatting.add(f"L2:L{n}", ColorScaleRule(start_type="num", start_value=1, start_color="D7301F", mid_type="num",
                               mid_value=5, mid_color="FFFFFF", end_type="num", end_value=9, end_color="1A9850"))
-dv = DataValidation(type="list", formula1='"ok,partly,wrong"', allow_blank=True); ws.add_data_validation(dv); dv.add(f"O2:O{n}")
+dv = DataValidation(type="list", formula1='"ok,partly,wrong"', allow_blank=True); ws.add_data_validation(dv); dv.add(f"P2:P{n}")
 for k, col in fills.items():
-    ws.conditional_formatting.add(f"O2:O{n}", CellIsRule(operator="equal", formula=[f'"{k}"'], fill=PatternFill("solid", fgColor=col)))
+    ws.conditional_formatting.add(f"P2:P{n}", CellIsRule(operator="equal", formula=[f'"{k}"'], fill=PatternFill("solid", fgColor=col)))
 
 # ---- Summary by word
 ws = wb.create_sheet("Summary by word")
@@ -103,8 +138,9 @@ header(ws, ["word", "group", "COCA lines", "scored lines (in results)", "sampled
        [18, 32, 9, 12, 8, 6, 7, 7, 55], 32)
 r = 2
 for it in order["item"]:
+    if it not in fate.index: continue      # no COCA lines for this word ('as' is left out of COCA by design, 2 Nov 2026)
     g = S[S.word == it]; f = fate.loc[it]
-    pt = g[g.check != "ok"].ptype.value_counts()
+    pt = g[g.check.isin(["partly", "wrong"])].ptype.value_counts()
     vals = [it, grp[it], int(f.sum()), int(f.get("scored", 0)), len(g), int((g.check == "ok").sum()), int((g.check == "partly").sum()),
             int((g.check == "wrong").sum()), ", ".join(f"{k} ({v})" for k, v in pt.items())]
     for j, v in enumerate(vals, 1): ws.cell(row=r, column=j, value=v).alignment = WR if j == 9 else TOP
@@ -120,7 +156,7 @@ ws.conditional_formatting.add(f"H2:H{r - 1}", ColorScaleRule(start_type="num", s
 ws = wb.create_sheet("Lines left out")
 fc = [c for c in fate.columns if c != "scored"]
 header(ws, ["word", "COCA lines", "scored"] + [c.replace("excluded: ", "") for c in fc], [18, 9, 9] + [14] * len(fc), 75)
-for r, it in enumerate(order["item"], 2):
+for r, it in enumerate([i for i in order["item"] if i in fate.index], 2):     # words with COCA lines only
     f = fate.loc[it]
     for j, v in enumerate([it, int(f.sum()), int(f.get("scored", 0))] + [int(f[c]) for c in fc], 1): ws.cell(row=r, column=j, value=v)
 ws.freeze_panes = "B2"
@@ -146,7 +182,7 @@ desc = {
 }
 ws = wb.create_sheet("Problem types")
 header(ws, ["problem type", "wrong", "partly", "what it is", "examples (# in the sample)"], [16, 8, 8, 95, 32])
-P = S[S.check != "ok"].groupby("ptype").check.value_counts().unstack(fill_value=0)
+P = S[S.check.isin(["partly", "wrong"])].groupby("ptype").check.value_counts().unstack(fill_value=0)
 P["k"] = P.get("wrong", 0) * 100 + P.get("partly", 0)
 for r, (pt, row) in enumerate(P.sort_values("k", ascending=False).iterrows(), 2):
     ex = ", ".join(str(i + 1) for i in S[S.ptype == pt].index[:10])

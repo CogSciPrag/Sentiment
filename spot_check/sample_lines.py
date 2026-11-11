@@ -1,5 +1,7 @@
 """COCA spot check, step 1: every COCA line with its fate (scored, or why it was left out), and a random sample of
-10 scored lines per expression, showing which words were scored (raw Hedonometer scores).
+10 scored lines per expression, showing which words were scored (raw Hedonometer scores) and the line's polarity.
+Scored words follow the active rules (form-first rule, 1 Nov 2026: 'problems (2.92)' = the form was scored;
+'ran -> run (5.24)' = the form is not in the Hedonometer, so its lemma was scored; 'xyz (–)' = neither, not scored).
 
 Inputs: data/work/coca_prepared.txt (step 5) and data/work/coca_scored/ (step 6).
 Outputs (data/results/spot_check/): coca_lines_all.tsv (contains corpus text: do not redistribute), sample10.tsv,
@@ -42,7 +44,7 @@ def fate(r):
     if r.frame == "not matched": return "excluded: parser did not find the item at the KWIC"
     if r.frame == "no effect": return "excluded: no effect found"
     if r.group == "passive": return "excluded: passive"
-    if r.group == "negated": return "excluded: negated"
+    if r.group == "negated": return "excluded: negated effect"
     if r.group != "main": return f"excluded: {r.group}"
     if r.frame == "target verb": return "excluded: target verb"
     if r.item in SL.AGG_FRAMES and r.frame not in SL.AGG_FRAMES[r.item]: return f"excluded: non-causative frame ({r.frame})"
@@ -51,9 +53,19 @@ def fate(r):
 R["fate"] = [fate(r) for r in R.itertuples()]
 
 H = SL.H
-def words_scored(ws):
+def words_scored(ws, fs=None):
+    """The words of one slot as scored: lemmas ws with their forms fs (same order), following SL.keys()."""
     if not isinstance(ws, str) or not ws.strip(): return ""
-    return ", ".join(f"{w} ({H[w]:.2f})" if w in H else f"{w} (–)" for w in ws.split())
+    lem = ws.split(); key = SL.keys(ws, fs, H)
+    frm = fs.split() if isinstance(fs, str) and len(fs.split()) == len(lem) else lem
+    out = []
+    if not config.FORM_FIRST: frm = lem          # lemma-only rule: show the lemmas, as in the 19 Oct 2026 check
+    for f, l, k in zip(frm, lem, key):
+        if k not in H: out.append(f"{f} (–)")
+        elif k == f: out.append(f"{f} ({H[k]:.2f})")
+        else: out.append(f"{f} -> {k} ({H[k]:.2f})")
+    return ", ".join(out)
+col = lambda c: R[c] if c in R else pd.Series(None, index=R.index, dtype=object)
 
 def line_text(r):
     rows = kwic[r.file]; li = int(r.line)
@@ -63,11 +75,15 @@ def line_text(r):
     return ref, f"{cl(left)} [[{cl(k)}]] {cl(right)}"
 
 R[["reference", "line_text"]] = [line_text(r) for r in R.itertuples()]
-R["N_scored"] = R.N_words.map(words_scored)
-R["V_scored"] = R.V_words.map(words_scored)
+R["N_scored"] = [words_scored(w, f) for w, f in zip(R.N_words, col("N_forms"))]
+R["V_scored"] = [words_scored(w, f) for w, f in zip(R.V_words, col("V_forms"))]
+if "polarity" not in R: R["polarity"] = ""
+R["N_lemmas"] = R.N_words.fillna(""); R["V_lemmas"] = R.V_words.fillna("")   # effect words, to match old verdicts
 # with/for-N rule: the direct object replaces N (prep does this); show it
 wf = (R.frame == "V + N + with/for N") & ~R.item.isin(["blame", "credit"]) & R.rid.isin(kept)
-R.loc[wf, "N_scored"] = R.loc[wf, "obj_words"].map(words_scored) + "  [direct object used: with/for-N rule]"
+R.loc[wf, "N_lemmas"] = R.loc[wf, "obj_words"].fillna("")
+R.loc[wf, "N_scored"] = [words_scored(w, f) + "  [direct object used: with/for-N rule]"
+                         for w, f in zip(R.loc[wf, "obj_words"], col("obj_forms")[wf])]
 R["line_score"] = R.agg_used.where(R.rid.isin(kept))
 
 order = [w for ws in WORD_GROUPS.values() for w in ws]
@@ -78,10 +94,12 @@ for item in order:
     take = g.iloc[np.sort(rng.choice(len(g), size=min(10, len(g)), replace=False))] if len(g) else g
     rows.append(take)
 S = pd.concat(rows)
-cols = ["item", "reference", "line_text", "frame", "N_scored", "V_scored", "line_score", "prevention", "effect_left"]
+cols = ["item", "reference", "line_text", "frame", "polarity", "N_scored", "V_scored", "line_score", "prevention", "effect_left",
+        "N_lemmas", "V_lemmas"]
 S[cols].reset_index(drop=True).to_csv(OUT / "sample10.tsv", sep="\t")
-R[["item", "file", "line", "reference", "line_text", "frame", "group", "fate", "N_words", "V_words", "obj_words", "N_mods",
-   "score_N", "score_V", "line_score"]].to_csv(OUT / "coca_lines_all.tsv", sep="\t", index=False, float_format="%.4f")
+R[[c for c in ["item", "file", "line", "reference", "line_text", "frame", "group", "polarity", "fate", "N_words", "N_forms",
+   "V_words", "V_forms", "obj_words", "N_mods", "N_scored", "V_scored", "score_N", "score_V", "line_score"] if c in R]].to_csv(OUT / "coca_lines_all.tsv", sep="\t", index=False, float_format="%.4f")
 F = R.groupby(["item", "fate"]).size().unstack(fill_value=0)
 F.to_csv(OUT / "fates.tsv", sep="\t")
-print(len(S), "sample rows;", len(R), "lines;", R.fate.eq("scored").sum(), "scored")
+(OUT / "rules.txt").write_text(config.rules_label() + "\n")     # build_xlsx.py uses this to decide on the old verdicts
+print(len(S), "sample rows;", len(R), "lines;", R.fate.eq("scored").sum(), "scored |", config.rules_label())
