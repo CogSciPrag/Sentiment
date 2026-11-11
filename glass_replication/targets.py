@@ -3,7 +3,8 @@ import re
 LEMMAS = ["affect","allow","arise","block","bring","cause","compel","contribute","create","depend","enable","ensure",
   "facilitate","force","foster","generate","get","give","guarantee","help","hinder","induce","influence","inhibit","lead",
   "let","make","necessitate","permit","prevent","produce","promote","prompt","provoke","render","require","result",
-  "secure","spark","stem","stop","trigger"]
+  "secure","spark","stem","stop","trigger",
+  "yield","demand","stimulate"]    # added after the first run; same procedure
 IRREG = {"arise":["arises","arose","arisen","arising"],"bring":["brings","brought","bringing"],"get":["gets","got","gotten","getting"],
   "give":["gives","gave","given","giving"],"lead":["leads","led","leading"],"let":["lets","letting"],"make":["makes","made","making"],
   "stem":["stems","stemmed","stemming"],"stop":["stops","stopped","stopping"],"permit":["permits","permitted","permitting"],

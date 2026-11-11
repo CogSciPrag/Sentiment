@@ -8,7 +8,7 @@ This folder re-runs Lelia Glass's own analysis code from her OSF project (<https
   alone (same tokens), and the WordNet category columns are left blank (they play no part in the sentiment scores).
 - `glass_pipeline_fast.py`: runs her per-sentence code in parallel, re-using each parse (spaCy's output for a given
   string is deterministic).
-- `targets.py`: the verbs of the replication and their word forms (used to pre-select sentences for the month).
+- `targets.py`: the 45 verbs of the replication and their word forms (used to pre-select sentences for the month).
 
 ## Steps
 
@@ -40,6 +40,7 @@ python glass_replication/plot_month.py
 - Her first 10 million words: 436,218 rows against her 436,110, 99.5% identical; *cause* direct-object mean 3.97
   against her 3.96; all other verbs 5.65 in both. Rank order of the verbs' object means: Spearman 0.999.
 - Whole-month check (22 less frequent verbs): 18,024 of her code's 18,024 rows identical to the fast re-run.
-- Whole month (4,524,771 comments after her filters, 138.8 million words): *cause* has the most negative direct
-  objects of the 37 verbs (3.91, n = 4,063; 65% below 5, against 16% for other verbs); *ensure* 5.91, *guarantee* 5.72
-  and *secure* 5.72 are at or above the baseline (5.65).
+- Whole month (4,524,771 comments after her filters, 138.8 million words): of the 45 verbs, 38 pass her frequency
+  filter (compel, facilitate, hinder, inhibit, necessitate, provoke and stimulate occur under 2 times per million words).
+  *cause* has the most negative direct objects (3.91, n = 4,063; 65% below 5, against 16% for other verbs); *ensure*
+  5.91, *guarantee* 5.72, *secure* 5.72, *demand* 5.76 and *yield* 5.95 are at or above the baseline (5.65).
